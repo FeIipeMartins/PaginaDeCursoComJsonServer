@@ -1,0 +1,42 @@
+import React, { useState, useEffect } from 'react';
+import './App.css';
+import Header from './Header';
+import Course from './Course';
+import CursoDeReact from './imagens/React.png';
+
+
+//tirando a variavel tamanho contar quantidade
+
+/*
+json-server --watch cursos.json --port 3001
+*/
+function App() {
+  const [courses, setCourses] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:3001/cursos')
+      .then(response => response.json())
+      .then(data => setCourses (data))
+      .catch(error => console.error('Erro ao carregar os cursos:', error));
+  }, []);
+
+  return (
+    <div className="App">
+      <Header userName="João" userImage="user.jpg" />
+      <h1>Catálogo de Cursos</h1>
+      <div className="course-list">
+        {courses.map(course => (
+          <Course
+            key={course.id}
+            title={course.title}
+            instructor={course.instructor}
+            duration={course.duration}
+            image={course.image}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default App;
