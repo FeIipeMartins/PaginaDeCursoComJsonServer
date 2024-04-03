@@ -2,9 +2,16 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Header from './Header';
 import Course from './Course';
-
 /*
-json-server --watch cursos.json --port 3001
+  Rodar Primeiro
+  cd my-app
+  npm start
+*/
+/*
+  Depois
+  cd my-app
+  cd src 
+  json-server --watch cursos.json --port 3001
 */
 
 function App() {
